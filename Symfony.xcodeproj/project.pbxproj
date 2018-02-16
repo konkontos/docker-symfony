@@ -6,10 +6,21 @@
 	objectVersion = 48;
 	objects = {
 
+/* Begin PBXFileReference section */
+		85B920962036D2FB00C56A72 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		85B920972036D2FC00C56A72 /* Dockerfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Dockerfile; sourceTree = "<group>"; };
+		85B920982036D4DA00C56A72 /* apache_base_ssl_off.conf */ = {isa = PBXFileReference; lastKnownFileType = text; path = apache_base_ssl_off.conf; sourceTree = "<group>"; };
+		85B920992036DEF000C56A72 /* apache_base_ssl_on.conf */ = {isa = PBXFileReference; lastKnownFileType = text; path = apache_base_ssl_on.conf; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
 /* Begin PBXGroup section */
 		85B9208F2036D2EA00C56A72 = {
 			isa = PBXGroup;
 			children = (
+				85B920962036D2FB00C56A72 /* README.md */,
+				85B920972036D2FC00C56A72 /* Dockerfile */,
+				85B920982036D4DA00C56A72 /* apache_base_ssl_off.conf */,
+				85B920992036DEF000C56A72 /* apache_base_ssl_on.conf */,
 			);
 			sourceTree = "<group>";
 		};
