@@ -2,6 +2,9 @@ FROM php:7-apache
 ARG ssl
 ENV SYMFONY symfonyapp
 ENV SYMFONY_APP_PUBLIC_FOLDER public
+ENV SSL_CERT /etc/ssl/symfonyapp/cert.pem
+ENV SSL_KEY /etc/ssl/symfonyapp/privkey.pem
+ENV SSL_CHAIN /etc/ssl/symfonyapp/chain.pem
 WORKDIR /root/
 RUN apt-get update
 RUN apt-get --assume-yes install zip
