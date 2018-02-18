@@ -36,6 +36,9 @@ WORKDIR /var/www
 
 COPY --chown=root:root ./apache_base_ssl_$ssl.conf /etc/apache2/sites-enabled/000-default.conf
 
+VOLUME /var/log
+VOLUME /etc/apache2
+
 #RUN composer create-project symfony/website-skeleton symfonyapp
 #ENTRYPOINT ["/usr/local/bin/apache2-foreground"]
 

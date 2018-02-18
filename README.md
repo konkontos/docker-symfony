@@ -39,7 +39,7 @@ SSL_CHAIN
 
 ## Logs
 
-Logs are written under **/var/www/log/apache2**
+Logs are written under **/var/log**
 
 Map a local volume to this location if you want to store logs locally.
 
