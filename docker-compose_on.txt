@@ -1,0 +1,45 @@
+version: '3.5'
+
+networks:
+
+    app_network:
+        name: symfony
+
+services:
+
+    database:
+        container_name: symfony-database
+        networks:
+            - app_network
+        image: mariadb
+        environment:
+            - MYSQL_DATABASE=symfony
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_USER=symfony
+            - MYSQL_PASSWORD=passwd
+        volumes:
+            - "./symfony/database:/var/lib/mysql"
+
+    webapp:
+        image: readylabs/symfony
+        build:
+            context: .
+            args:
+                ssl: "on"
+        depends_on:
+            - database
+        container_name: symfony-app
+        ports:
+            - "${SYMFONY_PORT:-8080}:80"
+        environment:
+            - SYMFONY=myapp
+        networks:
+            - app_network
+        command: apache2-foreground
+        volumes:
+            - "./symfony/www:/var/www"
+            - "./symfony/log:/var/log"
+
+
+
+

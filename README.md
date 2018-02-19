@@ -6,11 +6,11 @@ Comes with composer, Apache 2.4, PHP 7 and SSL support.
 
 # Build
 
-docker build --no-cache --rm --build-arg ssl=off -t readylabs/symfony .
+`docker build --no-cache --rm --build-arg ssl=off -t readylabs/symfony .`
 
 OR
 
-docker build --no-cache --rm --build-arg ssl=on -t readylabs/symfony .
+`docker build --no-cache --rm --build-arg ssl=on -t readylabs/symfony .`
 
 Depending on the **ssl** option Apache is setup with the appropriate default file.
 
@@ -46,7 +46,31 @@ Map a local volume to this location if you want to store logs locally.
 
 # Quick testing
 
-docker run --rm -it -v ~/docker_data/symfony/www:/var/www readylabs/symfony composer create-project symfony/website-skeleton myapp
+`docker run --rm -it -v ~/docker_data/symfony/www:/var/www readylabs/symfony composer create-project symfony/website-skeleton myapp`
 
-docker run --rm -p 127.0.0.1:8080:80 -v ~/docker_data/symfony/www:/var/www --env SYMFONY=myapp readylabs/symfony apache2-foreground
+`docker run --rm -p 127.0.0.1:8080:80 -v ~/docker_data/symfony/www:/var/www --env SYMFONY=myapp readylabs/symfony apache2-foreground`
+
+
+# Docker Compose App
+
+In development, and for conveniency, you can deploy a Symfony app using docker-compose.
+
+To deploy a plain HTTP Symfony with accompanying MariaDB run:
+
+`docker-compose -f ./docker-compose_off.yml up`
+
+for SSL run:
+
+`docker-compose -f ./docker-compose_on.yml up`
+
+Running these commands will, in-place, create the following folder hierarchy:
+
+    symfony
+        database
+        www
+        log
+        
+Use the **www** sub-folder to clone your existing Symfony project in.
+
+You can specify the port for the Symfony app by setting the **SYMFONY_PORT** environment variable.
 
