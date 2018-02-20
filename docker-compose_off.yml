@@ -13,10 +13,10 @@ services:
             - app_network
         image: mariadb
         environment:
-            - MYSQL_DATABASE=symfony
-            - MYSQL_ROOT_PASSWORD=root
-            - MYSQL_USER=symfony
-            - MYSQL_PASSWORD=passwd
+            - MYSQL_DATABASE=${SYMFONY_MYSQL_DATABASE:-symfony}
+            - MYSQL_ROOT_PASSWORD=${SYMFONY_MYSQL_ROOT_PASSWORD:-root}
+            - MYSQL_USER=${SYMFONY_MYSQL_USER:-symfony}
+            - MYSQL_PASSWORD=${SYMFONY_MYSQL_PASSWORD:-passwd}
         volumes:
             - "./symfony/database:/var/lib/mysql"
 
@@ -32,7 +32,8 @@ services:
         ports:
             - "${SYMFONY_PORT:-8080}:80"
         environment:
-            - SYMFONY=myapp
+            - SYMFONY=${SYMFONY:-myapp}
+            - SYMFONY_APP_PUBLIC_FOLDER=${SYMFONY_APP_PUBLIC_FOLDER:-public}
         networks:
             - app_network
         command: apache2-foreground
