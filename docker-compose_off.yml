@@ -17,11 +17,12 @@ services:
             - MYSQL_ROOT_PASSWORD=${SYMFONY_MYSQL_ROOT_PASSWORD:-root}
             - MYSQL_USER=${SYMFONY_MYSQL_USER:-symfony}
             - MYSQL_PASSWORD=${SYMFONY_MYSQL_PASSWORD:-passwd}
+            - MYSQL_ALLOW_EMPTY_PASSWORD=${SYMFONY_MYSQL_EMPTY_PASSWORD:-no}
         volumes:
             - "./symfony/database:/var/lib/mysql"
 
     webapp:
-        image: readylabs/symfony
+        image: handmadeapps/symfony
         build:
             context: .
             args:

@@ -6,11 +6,11 @@ Comes with composer, Apache 2.4, PHP 7 and SSL support.
 
 # Build
 
-`docker build --no-cache --rm --build-arg ssl=off -t readylabs/symfony .`
+`docker build --no-cache --rm --build-arg ssl=off -t handmadeapps/symfony .`
 
 OR
 
-`docker build --no-cache --rm --build-arg ssl=on -t readylabs/symfony .`
+`docker build --no-cache --rm --build-arg ssl=on -t handmadeapps/symfony .`
 
 Depending on the **ssl** option Apache is setup with the appropriate default file.
 
@@ -46,9 +46,9 @@ Map a local volume to this location if you want to store logs locally.
 
 # Quick testing
 
-`docker run --rm -it -v ~/docker_data/symfony/www:/var/www readylabs/symfony composer create-project symfony/website-skeleton myapp`
+`docker run --rm -it -v ~/docker_data/symfony/www:/var/www handmadeapps/symfony composer create-project symfony/website-skeleton myapp`
 
-`docker run --rm -p 127.0.0.1:8080:80 -v ~/docker_data/symfony/www:/var/www --env SYMFONY=myapp readylabs/symfony apache2-foreground`
+`docker run --rm -p 127.0.0.1:8080:80 -v ~/docker_data/symfony/www:/var/www --env SYMFONY=myapp handmadeapps/symfony apache2-foreground`
 
 
 # Docker Compose App
