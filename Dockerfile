@@ -1,5 +1,7 @@
 FROM php:7-apache
 
+LABEL maintainer="kkon@handmadeapps.tech"
+
 # Build args and env.
 
 ARG ssl
