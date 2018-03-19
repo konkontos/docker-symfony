@@ -46,9 +46,11 @@ Map a local volume to this location if you want to store logs locally.
 
 # Quick testing
 
+`docker run --net test --rm -it -v ~/docker_data/symfony/www:/var/www handmadeapps/symfony composer install`
+
 `docker run --rm -it -v ~/docker_data/symfony/www:/var/www handmadeapps/symfony composer create-project symfony/website-skeleton myapp`
 
-`docker run --rm -p 127.0.0.1:8080:80 -v ~/docker_data/symfony/www:/var/www --env SYMFONY=myapp handmadeapps/symfony apache2-foreground`
+`docker run --rm -p 127.0.0.1:8080:80 -v ~/docker_data/symfony/www:/var/www --env SYMFONY=myapp -- env SYMFONY_APP_PUBLIC_FOLDER=web handmadeapps/symfony apache2-foreground`
 
 
 # Docker Compose App
@@ -73,4 +75,40 @@ Running these commands will, in-place, create the following folder hierarchy:
 Use the **www** sub-folder to clone your existing Symfony project in.
 
 You can specify the port for the Symfony app by setting the **SYMFONY_PORT** environment variable.
+
+
+## Docker-Compose Step-By-Step Sample Usage / Tutorial
+
+`git clone https://bitbucket.org/ready-labs-team/docker_symfony.git`
+
+`cd docker_symfony`
+
+start the app :
+
+`docker-compose -f ./docker-compose_off.yml up -d`
+
+`cd symfony/www`
+
+`git clone [your symfony git project URL]`
+
+`cd ../..`
+
+edit `setup-env.sh` to fit your project
+
+run `composer install` after initial cloning
+
+`docker-compose -f ./docker-compose_off.yml run webapp composer --working-dir=[symfony app name] install`
+
+in a browser, go to : http://localhost:8080/app.php
+
+your app is up & running
+
+stop the app by issuing:
+
+`docker-compose -f ./docker-compose_off.yml down`
+
+
+
+
+
 
