@@ -83,6 +83,10 @@ You can specify the port for the Symfony app by setting the **SYMFONY_PORT** env
 
 `cd docker_symfony`
 
+edit `setup-env.sh` to fit your project
+
+run `source setup-env.sh`
+
 start the app :
 
 `docker-compose -f ./docker-compose_off.yml up -d`
@@ -93,11 +97,11 @@ start the app :
 
 `cd ../..`
 
-edit `setup-env.sh` to fit your project
-
 run `composer install` after initial cloning
 
 `docker-compose -f ./docker-compose_off.yml run webapp composer --working-dir=[symfony app name] install`
+
+edit your `parameters.yml` file to match the settings in the `setup-env.sh` script
 
 in a browser, go to : http://localhost:8080/app.php
 
