@@ -20,6 +20,12 @@ RUN apt-get update
 RUN apt-get --assume-yes install zip
 RUN apt-get autoclean
 
+# Configure PHP Extensions
+RUN docker-php-ext-configure pdo_mysql && docker-php-ext-install pdo_mysql
+
+# Copy PHP ini file
+COPY php.ini /usr/local/etc/php/
+
 # Enable Apache modules
 
 RUN a2enmod rewrite
