@@ -18,6 +18,7 @@ WORKDIR /root/
 
 RUN apt-get update
 RUN apt-get --assume-yes install zip
+RUN apt-get --assume-yes install git
 RUN apt-get autoclean
 
 # Configure PHP Extensions
