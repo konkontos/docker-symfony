@@ -107,7 +107,7 @@ run further setup commands, such as setting up your database. e.g.:
 
 `docker-compose -f ./docker-compose_off.yml run webapp php [symfony app name]/bin/console doctrine:schema:update --force`
 
-in a browser, go to : http://localhost:8080/app.php
+in a browser, go to : [http://localhost:8080/app.php](http://localhost:8080/app.php)
 
 your app is up & running
 
