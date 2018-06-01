@@ -20,6 +20,7 @@ RUN apt-get update
 RUN apt-get --assume-yes install zip
 RUN apt-get --assume-yes install git
 RUN apt-get --assume-yes install vim
+RUN apt-get --assume-yes install iputils-ping
 RUN apt-get autoclean
 
 # Configure PHP Extensions

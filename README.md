@@ -158,3 +158,12 @@ to enter the database container:
 
 `docker exec -it symfony-database bash`
 
+
+## MariaDB | Default Connection Settings
+
+**hostname**: symfony-database
+**dbname**: symfony
+**user**: symfony
+**password**: passwd
+
+
