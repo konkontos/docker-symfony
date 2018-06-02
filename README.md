@@ -87,7 +87,7 @@ edit `setup-env.sh` to fit your project (hint: the **SYMFONY** variable is the s
 
 run `source setup-env.sh`
 
-start the app :
+**start** the app :
 
 `docker-compose -f ./docker-compose_off.yml up -d`
 
@@ -99,7 +99,7 @@ in a browser, go to : [http://localhost:8080/](http://localhost:8080/)
 
 your app is up & running
 
-stop the app by issuing:
+**stop** the app by issuing:
 
 `docker-compose -f ./docker-compose_off.yml down`
 
@@ -122,7 +122,7 @@ edit `setup-env.sh` to fit your project (hint: the **SYMFONY** variable is the s
 
 run `source setup-env.sh`
 
-start the app :
+**start** the app :
 
 `docker-compose -f ./docker-compose_off.yml up -d`
 
@@ -146,7 +146,7 @@ in a browser, go to : [http://localhost:8080/](http://localhost:8080/)
 
 your app is up & running
 
-stop the app by issuing:
+**stop** the app by issuing:
 
 `docker-compose -f ./docker-compose_off.yml down`
 

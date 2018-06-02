@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		850B344220C2595300BBA781 /* start.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = start.sh; sourceTree = "<group>"; };
+		850B344320C2598900BBA781 /* stop.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = stop.sh; sourceTree = "<group>"; };
+		850B344420C25FD500BBA781 /* start-ssl.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "start-ssl.sh"; sourceTree = "<group>"; };
+		850B344520C25FD500BBA781 /* stop-ssl.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "stop-ssl.sh"; sourceTree = "<group>"; };
 		8577A080205FDF0C006F14A9 /* setup-env.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "setup-env.sh"; sourceTree = "<group>"; };
 		8577A0812060D533006F14A9 /* php.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = php.ini; sourceTree = "<group>"; };
 		85B920962036D2FB00C56A72 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -23,6 +27,10 @@
 			children = (
 				8577A0812060D533006F14A9 /* php.ini */,
 				8577A080205FDF0C006F14A9 /* setup-env.sh */,
+				850B344220C2595300BBA781 /* start.sh */,
+				850B344320C2598900BBA781 /* stop.sh */,
+				850B344420C25FD500BBA781 /* start-ssl.sh */,
+				850B344520C25FD500BBA781 /* stop-ssl.sh */,
 				85B920962036D2FB00C56A72 /* README.md */,
 				85B920972036D2FC00C56A72 /* Dockerfile */,
 				85B920A5203A9FC300C56A72 /* docker-compose_off.yml */,

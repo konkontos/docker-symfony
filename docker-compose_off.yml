@@ -42,6 +42,16 @@ services:
             - "./symfony/www:/var/www"
             - "./symfony/log:/var/log"
 
+    phpmyadmin:
+        container_name: symfony-phpmyadmin
+        networks:
+            - app_network
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - "${PHPMYADMIN_PORT:-9090}:80"
+        environment:
+            - PMA_HOST=symfony-database
+
 
 
 
