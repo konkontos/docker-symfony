@@ -167,3 +167,13 @@ to enter the database container:
 **password**: passwd
 
 
+# References
+
+- [Docker Compose Overview](https://docs.docker.com/compose/overview/)
+- [Installing & Setting up the Symfony Framework](https://symfony.com/doc/current/setup.html)
+- [Symfony | Configuring a Web Server](https://symfony.com/doc/current/setup/web_server_configuration.html)
+
+
+
+
+
