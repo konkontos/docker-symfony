@@ -11,7 +11,7 @@
 		850B344320C2598900BBA781 /* stop.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = stop.sh; sourceTree = "<group>"; };
 		850B344420C25FD500BBA781 /* start-ssl.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "start-ssl.sh"; sourceTree = "<group>"; };
 		850B344520C25FD500BBA781 /* stop-ssl.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "stop-ssl.sh"; sourceTree = "<group>"; };
-		8577A080205FDF0C006F14A9 /* setup-env.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "setup-env.sh"; sourceTree = "<group>"; };
+		8573F7F2210AFD500041C945 /* .env */ = {isa = PBXFileReference; lastKnownFileType = text; path = .env; sourceTree = "<group>"; };
 		8577A0812060D533006F14A9 /* php.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = php.ini; sourceTree = "<group>"; };
 		85B920962036D2FB00C56A72 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		85B920972036D2FC00C56A72 /* Dockerfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Dockerfile; sourceTree = "<group>"; };
@@ -22,21 +22,37 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		85B9208F2036D2EA00C56A72 = {
+		8573F7F3210AFE990041C945 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
-				8577A0812060D533006F14A9 /* php.ini */,
-				8577A080205FDF0C006F14A9 /* setup-env.sh */,
 				850B344220C2595300BBA781 /* start.sh */,
 				850B344320C2598900BBA781 /* stop.sh */,
 				850B344420C25FD500BBA781 /* start-ssl.sh */,
 				850B344520C25FD500BBA781 /* stop-ssl.sh */,
+			);
+			name = Scripts;
+			sourceTree = "<group>";
+		};
+		8573F7F5210AFF010041C945 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				8577A0812060D533006F14A9 /* php.ini */,
+				85B920982036D4DA00C56A72 /* apache_base_ssl_off.conf */,
+				85B920992036DEF000C56A72 /* apache_base_ssl_on.conf */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+		85B9208F2036D2EA00C56A72 = {
+			isa = PBXGroup;
+			children = (
 				85B920962036D2FB00C56A72 /* README.md */,
+				8573F7F2210AFD500041C945 /* .env */,
 				85B920972036D2FC00C56A72 /* Dockerfile */,
 				85B920A5203A9FC300C56A72 /* docker-compose_off.yml */,
 				85B920A6203AA4B600C56A72 /* docker-compose_on.yml */,
-				85B920982036D4DA00C56A72 /* apache_base_ssl_off.conf */,
-				85B920992036DEF000C56A72 /* apache_base_ssl_on.conf */,
+				8573F7F5210AFF010041C945 /* Config */,
+				8573F7F3210AFE990041C945 /* Scripts */,
 			);
 			sourceTree = "<group>";
 		};

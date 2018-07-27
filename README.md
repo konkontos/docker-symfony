@@ -83,9 +83,7 @@ You can specify the port for the Symfony app by setting the **SYMFONY_PORT** env
 
 `cd docker_symfony`
 
-edit `setup-env.sh` to fit your project (hint: the **SYMFONY** variable is the same as the name of your symfony project repo.)
-
-run `source setup-env.sh`
+edit `.env` to fit your project (hint: the **SYMFONY** variable is the same as the name of your symfony project repo.)
 
 **start** the app :
 
@@ -118,9 +116,8 @@ to enter the database container:
 
 `cd docker_symfony`
 
-edit `setup-env.sh` to fit your project (hint: the **SYMFONY** variable is the same as the name of your symfony project repo.)
+edit `.env` to fit your project (hint: the **SYMFONY** variable is the same as the name of your symfony project repo.)
 
-run `source setup-env.sh`
 
 **start** the app :
 
@@ -136,7 +133,7 @@ run `composer install` after initial cloning
 
 `docker exec symfony-app composer --working-dir=[symfony app name] install`
 
-edit the newly generated `parameters.yml` file to match the settings in the `setup-env.sh` script
+edit the newly generated `parameters.yml` file to match the settings in the `.env` file
 
 run further setup commands, such as setting up your database. e.g.:
 
