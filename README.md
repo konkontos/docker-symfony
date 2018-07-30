@@ -177,8 +177,11 @@ You can optionally start a PHPMyAdmin by entering: `docker-compose up -d phpmyad
 ## MariaDB | Default Connection Settings
 
 **hostname**: symfony-database
+
 **dbname**: symfony
+
 **user**: symfony
+
 **password**: passwd
 
 
