@@ -4,17 +4,18 @@ LABEL maintainer="kkon@handmadeapps.tech"
 
 # Build args and env.
 
-ARG ssl
+ARG SYMFONY_USE_SSL
 
-ENV SYMFONY symfonyapp
-ENV SYMFONY_APP_PUBLIC_FOLDER public
-ENV SSL_CERT /etc/ssl/symfonyapp/cert.pem
-ENV SSL_KEY /etc/ssl/symfonyapp/privkey.pem
-ENV SSL_CHAIN /etc/ssl/symfonyapp/chain.pem
-
-# Install system packages
+#ENV SYMFONY symfonyapp
+#ENV SYMFONY_APP_PUBLIC_FOLDER public
+#ENV SYMFONY_APP_LOG_FOLDER log
+#ENV SYMFONY_APACHE_SSL_CERT /etc/ssl/symfonyapp/cert.pem
+#ENV SYMFONY_APACHE_SSL_KEY /etc/ssl/symfonyapp/privkey.pem
+#ENV SSL_CHAIN /etc/ssl/symfonyapp/chain.pem
 
 WORKDIR /root/
+
+# Install utils
 
 RUN apt-get update
 RUN apt-get --assume-yes install zip
@@ -45,10 +46,10 @@ RUN mv /usr/local/bin/composer.phar /usr/local/bin/composer
 
 WORKDIR /var/www
 
-COPY --chown=root:root ./apache_base_ssl_$ssl.conf /etc/apache2/sites-enabled/000-default.conf
-
 VOLUME /var/log
 VOLUME /etc/apache2
+
+COPY --chown=root:root ./apache_base_ssl_$SYMFONY_USE_SSL.conf /etc/apache2/sites-enabled/000-default.conf
 
 #RUN composer create-project symfony/website-skeleton symfonyapp
 #ENTRYPOINT ["/usr/local/bin/apache2-foreground"]

@@ -1,21 +1,22 @@
 # Overview
 
-Base image for Symfony projects.
+Docker app (primarily) for Symfony projects.
 
-Comes with composer, Apache 2.4, PHP 7 and SSL support.
+Comes with PHP Composer, Apache 2.4, PHP 7, MariaDB, PHPMyAdmin and SSL support.
 
 # Build
 
-`docker build --no-cache --rm --build-arg ssl=off -t handmadeapps/symfony .`
+`docker build --no-cache --rm --build-arg SYMFONY_USE_SSL=off -t handmadeapps/symfony .`
 
 OR
 
-`docker build --no-cache --rm --build-arg ssl=on -t handmadeapps/symfony .`
+`docker build --no-cache --rm --build-arg SYMFONY_USE_SSL=on -t handmadeapps/symfony .`
 
 Depending on the **ssl** option Apache is setup with the appropriate default file.
 
 
 # Volumes and Environment vars.
+
 
 ## App content
 
@@ -27,6 +28,9 @@ SYMFONY (default: symfonyapp)
 
 SYMFONY_APP_PUBLIC_FOLDER (default: public)
 
+**See `sample.env` file, and inline comments, for all applicable variables.**
+
+
 ## SSL certificates
 
 If you have enabled SSL, then map a local volume with the necessary files and then provide values for the following vars:
@@ -35,7 +39,6 @@ SSL_CERT
 
 SSL_KEY
 
-SSL_CHAIN
 
 ## Logs
 
@@ -55,23 +58,26 @@ Map a local volume to this location if you want to store logs locally.
 
 # Docker Compose App
 
+## Config / Environment Variables
+
+The project contains a `sample.env` file.
+
+Copy this file into `.env` and edit accordingly (see inline comments).
+
+
+## Running the app
+
 In development, and for conveniency, you can deploy a Symfony app using docker-compose.
 
-To deploy a plain HTTP Symfony with accompanying MariaDB run:
-
-`docker-compose -f ./docker-compose_off.yml up`
-
-for SSL run:
-
-`docker-compose -f ./docker-compose_on.yml up`
+`docker-compose up [app | appssl]`
 
 Running these commands will, in-place, create the following folder hierarchy:
 
-    symfony
-        database
-        www
-        log
-        
+symfony
+database
+www
+log
+
 Use the **www** sub-folder to clone your existing Symfony project in.
 
 You can specify the port for the Symfony app by setting the **SYMFONY_PORT** environment variable.
@@ -83,11 +89,13 @@ You can specify the port for the Symfony app by setting the **SYMFONY_PORT** env
 
 `cd docker_symfony`
 
-edit `.env` to fit your project (hint: the **SYMFONY** variable is the same as the name of your symfony project repo.)
+copy `sample.env` into `.env`
 
-**start** the app :
+edit `.env` accordingly to fit your use (hint: the **SYMFONY** variable is the same as the name of your symfony project repo.)
 
-`docker-compose -f ./docker-compose_off.yml up -d`
+**start** the app : (**NOTE**: you can also use the convenience script `start.sh`)
+
+`docker-compose up -d app`
 
 setup a new symfony project:
 
@@ -97,9 +105,9 @@ in a browser, go to : [http://localhost:8080/](http://localhost:8080/)
 
 your app is up & running
 
-**stop** the app by issuing:
+**stop** the app by issuing: (**NOTE**: you can also use the convenience script `stop.sh`)
 
-`docker-compose -f ./docker-compose_off.yml down`
+`docker-compose down`
 
 at any time you can enter your symfony app container to run commands:
 
@@ -116,12 +124,13 @@ to enter the database container:
 
 `cd docker_symfony`
 
+copy `sample.env` into `.env`
+
 edit `.env` to fit your project (hint: the **SYMFONY** variable is the same as the name of your symfony project repo.)
 
+**start** the app : (**NOTE**: you can also use the convenience script `start.sh`)
 
-**start** the app :
-
-`docker-compose -f ./docker-compose_off.yml up -d`
+`docker-compose up -d app`
 
 `cd symfony/www`
 
@@ -143,9 +152,9 @@ in a browser, go to : [http://localhost:8080/](http://localhost:8080/)
 
 your app is up & running
 
-**stop** the app by issuing:
+**stop** the app by issuing: (**NOTE**: you can also use the convenience script `stop.sh`)
 
-`docker-compose -f ./docker-compose_off.yml down`
+`docker-compose down`
 
 at any time you can enter your symfony app container to run commands:
 
@@ -155,6 +164,15 @@ to enter the database container:
 
 `docker exec -it symfony-database bash`
 
+
+## Optional, PHPMyAdmin service
+
+You can optionally start a PHPMyAdmin by entering: `docker-compose up -d phpmyadmin`
+
+
+## Notes
+
+- When switching between SSL config (on / off) add the `--build` argument to `docker-compose up` (or at at the end of `start.sh`) to ensure that the app image is rebuilt with the correct Apache server configuration. 
 
 ## MariaDB | Default Connection Settings
 

@@ -1,0 +1,82 @@
+version: '3.5'
+
+networks:
+
+    app_network:
+        name: "${SYMFONY_DOCKER_NETWORK:-symfony}"
+
+services:
+
+    database:
+        restart: always
+        container_name: symfony-database
+        networks:
+            - app_network
+        image: mariadb
+        environment:
+            - MYSQL_DATABASE=${SYMFONY_MYSQL_DATABASE:-symfony}
+            - MYSQL_ROOT_PASSWORD=${SYMFONY_MYSQL_ROOT_PASSWORD:-root}
+            - MYSQL_USER=${SYMFONY_MYSQL_USER:-symfony}
+            - MYSQL_PASSWORD=${SYMFONY_MYSQL_PASSWORD:-passwd}
+            - MYSQL_ALLOW_EMPTY_PASSWORD=${SYMFONY_MYSQL_EMPTY_PASSWORD:-no}
+        volumes:
+            - "${SYMFONY_APP_DB_FOLDER:?'Please, specify db folder in .env file.'}:/var/lib/mysql"
+
+    app:
+        restart: always
+        image: handmadeapps/symfony
+        build:
+            context: .
+            args:
+                - SYMFONY_USE_SSL=off
+        depends_on:
+            - database
+        container_name: symfony-app
+        ports:
+            - "${SYMFONY_PORT:-8080}:80"
+        environment:
+            - SYMFONY=${SYMFONY:-myapp}
+            - SYMFONY_APP_PUBLIC_FOLDER=${SYMFONY_APP_PUBLIC_FOLDER:-web}
+        networks:
+            - app_network
+        command: bash -c "cd /var/www/${SYMFONY}; composer install --no-interaction; apache2-foreground"
+        volumes:
+            - "${SYMFONY_APP_PROJECT_FOLDER:?'Please, specify source project folder in .env file.'}:/var/www"
+            - "${SYMFONY_APP_LOG_FOLDER:?'Please, specify logs folder in .env file.'}:/var/log"
+
+    appssl:
+        restart: always
+        image: handmadeapps/symfony
+        build:
+            context: .
+            args:
+                - SYMFONY_USE_SSL=on
+        depends_on:
+            - database
+        container_name: symfony-app
+        ports:
+            - "${SYMFONY_PORT:-8080}:443"
+        environment:
+            - SYMFONY=${SYMFONY:-myapp}
+            - SYMFONY_APP_PUBLIC_FOLDER=${SYMFONY_APP_PUBLIC_FOLDER:-web}
+            - SYMFONY_APACHE_SSL_CERT
+            - SYMFONY_APACHE_SSL_KEY
+        networks:
+            - app_network
+        command: bash -c "cd /var/www/${SYMFONY}; composer install --no-interaction; apache2-foreground"
+        volumes:
+            - "${SYMFONY_APP_PROJECT_FOLDER:?'Please, specify source project folder in .env file.'}:/var/www"
+            - "${SYMFONY_APP_LOG_FOLDER:?'Please, specify logs folder in .env file.'}:/var/log"
+            - "${SYMFONY_APACHE_SSL_FOLDER:?'Please, specify ssl certs folder in .env file.'}:/etc/ssl"
+
+    phpmyadmin:
+        restart: "no"
+        container_name: symfony-phpmyadmin
+        networks:
+            - app_network
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - "${PHPMYADMIN_PORT:-9090}:80"
+        environment:
+            - PMA_HOST=symfony-database
+
